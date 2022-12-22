@@ -19,7 +19,7 @@ export async function sendEmail(messageToSend){
         text:message
     }, (error, info)=>{
         if(error) {
-             throw new Error(error.message)
+             console.log(error);
         }else{
             return info
         }
