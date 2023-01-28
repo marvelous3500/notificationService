@@ -15,18 +15,19 @@ router.post('/', async (req, res) => {
     }
 
     try {
-        
-      //  await emailProducer.sendEmailProducer(message);
         await emailService.sendEmail(message);
-        res.json({message: "email sent succesfully "}).status(200);
+        await emailProducer.sendEmailProducer(message);
         message.status = true
+
+        await notification.logNotification(message);
+        res.json({message: "email sent succesfully "}).status(200);
+      
 
     } catch (error) {
         message.status = false;
         res.json({message: error}).status(500)
     }
-    
-    await notification.logNotification(message);
+
   
 })
 

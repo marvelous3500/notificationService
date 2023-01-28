@@ -4,7 +4,6 @@ import * as consumer from '../consumers/emailconsumer'
 
 export async function sendEmailProducer( message){
     try {
-
          const clientId =  "notification-service";
          const brokers  = ['localhost:9092'];
          const kafka = new Kafka({ clientId, brokers })
